@@ -1,9 +1,10 @@
 import com.google.gson.Gson;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.Reader;
-
+        import java.io.IOException;
+        import java.io.Reader;
+@Controller
 public class PostController {
     private final PostService service;
     public static final String APPLICATION_JSON = "application/json";
@@ -57,7 +58,7 @@ public class PostController {
     }
 
     public void removeById(long id, HttpServletResponse response) throws IOException {
-response.setContentType("text/css");
+        response.setContentType("text/css");
         service.removeById(id);
 
         response.getWriter().print("Content deleted  ");

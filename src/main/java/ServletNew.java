@@ -1,3 +1,5 @@
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -10,10 +12,10 @@ public class ServletNew extends HttpServlet {
 
     @Override
     public void init() {
-        final var repository = new PostRepository();
-
-        final var service = new PostService(repository);
-        controller = new PostController(service);
+        final  var context = new AnnotationConfigApplicationContext();
+        final var controller = context.getBean(PostController.class);
+        final var service = context.getBean(PostService.class);
+        final var repository = context.getBean(PostRepository.class);
 
     }
 

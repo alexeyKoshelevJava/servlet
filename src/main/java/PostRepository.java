@@ -1,7 +1,9 @@
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-
+@Repository
 public class PostRepository {
     private Map<Long, String> posts = new ConcurrentHashMap<>();
     private long id = 0;
