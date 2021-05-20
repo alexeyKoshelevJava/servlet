@@ -12,10 +12,12 @@ public class ServletNew extends HttpServlet {
 
     @Override
     public void init() {
-        final  var context = new AnnotationConfigApplicationContext();
-        final var controller = context.getBean(PostController.class);
+        final var context = new AnnotationConfigApplicationContext();
+        controller = context.getBean(PostController.class);
+
         final var service = context.getBean(PostService.class);
         final var repository = context.getBean(PostRepository.class);
+
 
     }
 
@@ -53,7 +55,7 @@ public class ServletNew extends HttpServlet {
 
         if (path.matches("/api/posts/\\d+")) {
 
-            final var id = Long.parseLong(path.substring(path.lastIndexOf("/")+1));
+            final var id = Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
             controller.removeById(id, resp);
             return;
         }
