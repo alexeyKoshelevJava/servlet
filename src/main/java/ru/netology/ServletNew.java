@@ -1,25 +1,39 @@
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+package ru.netology;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import ru.netology.PostController;
+import ru.netology.PostRepository;
+import ru.netology.PostService;
 
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 
 public class ServletNew extends HttpServlet {
-    private PostController controller;
 
-    @Override
-    public void init() {
-        final var context = new AnnotationConfigApplicationContext();
-        controller = context.getBean(PostController.class);
-
-        final var service = context.getBean(PostService.class);
-        final var repository = context.getBean(PostRepository.class);
+    PostController controller ;
 
 
-    }
+@Override
+public void init() {
+//    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+//            "ApplicationContext.xml"
+//    );
+//    controller =  context.getBean("postController",PostController.class);
+
+    final var repository = new PostRepository();
+
+    final var service = new PostService(repository);
+   controller = new PostController(service);
+
+
+
+}
 
 
     @Override

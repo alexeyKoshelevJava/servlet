@@ -1,3 +1,8 @@
+package ru.netology;
+
+import org.springframework.stereotype.Component;
+
+@Component
 public class Post {
     private long id;
     private String content;

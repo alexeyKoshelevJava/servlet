@@ -1,11 +1,16 @@
-import org.springframework.stereotype.Service;
+package ru.netology;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import ru.netology.Post;
+import ru.netology.PostRepository;
+
 import java.util.Map;
-@Service
+@Component
 public class PostService {
     private final PostRepository repository;
-
+@Autowired
     public PostService(PostRepository repository) {
         this.repository = repository;
     }

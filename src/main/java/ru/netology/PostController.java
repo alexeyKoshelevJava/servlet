@@ -1,17 +1,22 @@
+package ru.netology;
+
 import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import ru.netology.Post;
 
 import javax.servlet.http.HttpServletResponse;
         import java.io.IOException;
         import java.io.Reader;
-@Controller
+@Component
 public class PostController {
     private final PostService service;
     public static final String APPLICATION_JSON = "application/json";
     public static final String FILE_IS_EMPTY = "File is empty";
     public static final String CONTENT_IS_EMPTY = "Content is empty";
 
-
+@Autowired
     public PostController(PostService service) {
         this.service = service;
     }
@@ -62,5 +67,8 @@ public class PostController {
         service.removeById(id);
 
         response.getWriter().print("Content deleted  ");
+    }
+    public void printHello(){
+        System.out.println("привет от контролера");
     }
 }
