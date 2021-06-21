@@ -21,15 +21,13 @@ public class ServletNew extends HttpServlet {
 
 @Override
 public void init() {
-//    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-//            "ApplicationContext.xml"
-//    );
-//    controller =  context.getBean("postController",PostController.class);
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+            "ApplicationContext.xml"
+    );
+    controller =  context.getBean("postController",PostController.class);
 
-    final var repository = new PostRepository();
 
-    final var service = new PostService(repository);
-   controller = new PostController(service);
+
 
 
 
