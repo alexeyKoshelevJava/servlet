@@ -1,8 +1,16 @@
+package ru.netology;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import ru.netology.Post;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-
+@Component
 public class PostRepository {
+
     private Map<Long, String> posts = new ConcurrentHashMap<>();
     private long id = 0;
 

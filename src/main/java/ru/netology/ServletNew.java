@@ -1,21 +1,37 @@
-import javax.servlet.*;
-import javax.servlet.http.*;
+package ru.netology;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import ru.netology.PostController;
+import ru.netology.PostRepository;
+import ru.netology.PostService;
+
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 
 public class ServletNew extends HttpServlet {
-    private PostController controller;
 
-    @Override
-    public void init() {
-        final var repository = new PostRepository();
+    PostController controller ;
 
-        final var service = new PostService(repository);
-        controller = new PostController(service);
 
-    }
+@Override
+public void init() {
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+            "ApplicationContext.xml"
+    );
+    controller =  context.getBean("postController",PostController.class);
+
+
+
+
+
+
+}
 
 
     @Override
@@ -51,7 +67,7 @@ public class ServletNew extends HttpServlet {
 
         if (path.matches("/api/posts/\\d+")) {
 
-            final var id = Long.parseLong(path.substring(path.lastIndexOf("/")+1));
+            final var id = Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
             controller.removeById(id, resp);
             return;
         }

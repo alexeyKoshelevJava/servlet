@@ -7,7 +7,7 @@
     <!-- определение servlet'а -->
     <servlet>
         <servlet-name>main</servlet-name>
-        <servlet-class>ServletNew</servlet-class>
+        <servlet-class>ru.netology.ServletNew</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
@@ -18,7 +18,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>main</servlet-name>
-        <url-pattern>/api/posts/</url-pattern>
+        <url-pattern>/api/post/</url-pattern>
     </servlet-mapping>
-
 </web-app>
+
