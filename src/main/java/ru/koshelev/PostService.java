@@ -1,4 +1,8 @@
-import java.util.List;
+package ru.koshelev;
+
+import ru.koshelev.PostController;
+import ru.koshelev.PostRepository;
+
 import java.util.Map;
 
 public class PostService {
@@ -12,11 +16,11 @@ public class PostService {
         return repository.all();
     }
 
-    public Post getById(long id) {
+    public PostController.Post getById(long id) {
         return repository.getById(id);
     }
 
-    public Post save(Post post) {
+    public PostController.Post save(PostController.Post post) {
         return repository.save(post);
     }
 
