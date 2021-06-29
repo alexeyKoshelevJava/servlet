@@ -1,8 +1,14 @@
+package ru.koshelev;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.koshelev.PostController;
+import ru.koshelev.PostRepository;
+import ru.koshelev.PostService;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
 public class ServletNew extends HttpServlet {
@@ -10,10 +16,8 @@ public class ServletNew extends HttpServlet {
 
     @Override
     public void init() {
-        final var repository = new PostRepository();
-
-        final var service = new PostService(repository);
-        controller = new PostController(service);
+       AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        controller = context.getBean("postController",PostController.class);
 
     }
 

@@ -1,3 +1,7 @@
+package ru.koshelev;
+
+import ru.koshelev.PostController;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -11,22 +15,22 @@ public class PostRepository {
         return posts;
     }
 
-    public Post getById(long I) {
+    public PostController.Post getById(long I) {
         if (posts.containsKey(I)) {
             final var content = posts.get(I);
-            return new Post(I, content);
+            return new PostController.Post(I, content);
         } else return null;
 
 
     }
 
 
-    public synchronized Post save(Post post) {
+    public synchronized PostController.Post save(PostController.Post post) {
 
         if (post.getId() == 0) {
             id++;
             posts.put(id, post.getContent());
-            return new Post(id, post.getContent());
+            return new PostController.Post(id, post.getContent());
         } else if (post.getId() != 0  && posts.containsKey(post.getId()) ){
             posts.put(post.getId(), post.getContent());
             return post;
